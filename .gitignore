@@ -33,3 +33,4 @@ login_info.txt
 /target
 /.idea
 /.settings
+.DS_Store
