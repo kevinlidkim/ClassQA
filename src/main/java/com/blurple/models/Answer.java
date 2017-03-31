@@ -13,31 +13,31 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Reply {
+public class Answer {
     @Id public Long id;
 
-    public Long courseId;
+    public Long questionId;
     public Long userId;
     public String content;
     public Date dateTime;
 
-    public Reply() {
+    public Answer() {
         dateTime = new Date();
     }
 
-    public Reply(Long courseId, Long userId, String content) {
-        this.courseId = courseId;
+    public Answer(Long questionId, Long userId, String content) {
+        this.questionId = questionId;
         this.userId = userId;
         this.content = content;
         this.dateTime = new Date();
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
     public Long getUserId() {

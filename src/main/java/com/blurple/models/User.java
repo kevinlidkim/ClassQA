@@ -10,8 +10,7 @@ import com.googlecode.objectify.annotation.Parent;
 
 import java.lang.String;
 import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 @Entity
 public class User {
@@ -21,21 +20,18 @@ public class User {
   public String lastName;
   public String email;
   public boolean isProfessor;
-  public List<Course> courses;
-  public List<Post> posts;
-  public List<Reply> replies;
+  public HashSet<Course> courses;
 
 
   public User() {
-    this.courses = new ArrayList<Course>();
-    this.posts = new ArrayList<Post>();
+    this.courses = new HashSet<Course>();
   }
 
   public User(String firstName, String lastName, boolean isProfessor) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.isProfessor = isProfessor;
-    this.courses = new ArrayList<Course>();
+    this.courses = new HashSet<Course>();
   }
 
   public String getFirstName() {
@@ -66,7 +62,7 @@ public class User {
     return isProfessor;
   }
 
-  public List<Course> getCourses() {
+  public HashSet<Course> getCourses() {
     return courses;
   }
 
@@ -80,38 +76,6 @@ public class User {
 
   public void removeAllCourses() {
     courses.clear();
-  }
-
-  public List<Post> getPosts() {
-    return posts;
-  }
-
-  public void addPost(Post post) {
-    posts.add(post);
-  }
-
-  public void removePost(Post post) {
-    posts.remove(post);
-  }
-
-  public void removeAllPosts() {
-    posts.clear();
-  }
-
-  public List<Reply> getReplies() {
-    return replies;
-  }
-
-  public void addReply(Reply reply) {
-    replies.add(reply);
-  }
-
-  public void removeReply(Reply reply) {
-    replies.remove(reply);
-  }
-
-  public void removeAllReplies() {
-    replies.clear();
   }
 
   public Long getId() {

@@ -10,27 +10,27 @@ import java.util.ArrayList;
 
 
 @Entity
-public class Post {
+public class Question {
   @Id public Long id;
 
   public Long courseId;
   public Long userId;
   public String content;
-  public List<Reply> replies;
+  public List<Answer> answers;
   public Date dateTime;
 
 
-  public Post() {
+  public Question() {
     dateTime = new Date();
-    replies = new ArrayList<Reply>();
+    answers = new ArrayList<Answer>();
   }
 
-  public Post(Long courseId, Long userId, String content) {
+  public Question(Long courseId, Long userId, String content) {
     this.courseId = courseId;
     this.userId = userId;
     this.content = content;
     this.dateTime = new Date();
-    replies = new ArrayList<Reply>();
+    answers = new ArrayList<Answer>();
   }
 
   public Long getCourseId() {
@@ -57,20 +57,20 @@ public class Post {
     this.content = content;
   }
 
-  public List<Reply> getReplies() {
-    return replies;
+  public List<Answer> getAnswers() {
+    return answers;
   }
 
-  public void addReply(Reply reply) {
-    replies.add(reply);
+  public void addAnswer(Answer answer) {
+    answers.add(answer);
   }
 
-  public void removeReply(Reply reply) {
-    replies.remove(reply);
+  public void removeAnswer(Answer answer) {
+    answers.remove(answer);
   }
 
-  public void removeAllReplies() {
-    replies.clear();
+  public void removeAllAnswers() {
+    answers.clear();
   }
 
   public String getDateTime() {
