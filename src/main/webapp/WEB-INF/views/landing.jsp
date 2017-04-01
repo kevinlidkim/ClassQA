@@ -3,10 +3,17 @@
 
 <html>
 <head>
+  <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
+
 </head>
 
 <body>
   <div>
     LANDING PAGE
   </div>
+  <div id="my-signin2"></div>
+
+  <script src="../../login.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
+</html>

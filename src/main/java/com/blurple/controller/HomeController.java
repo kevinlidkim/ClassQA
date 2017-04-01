@@ -38,7 +38,10 @@ public class HomeController {
   }
 
   @RequestMapping("/home")
-  public ModelAndView loadHomePage() {
+  public ModelAndView loadHomePage(
+          @RequestParam(value="user", required=false) String user,
+          @RequestParam(value="email", required=false) String email) {
+
     // add params and checks for login. otherwise, redirect back to landing page
     // create a session upon login
     ModelAndView mv = new ModelAndView("home");
