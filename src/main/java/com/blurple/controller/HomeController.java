@@ -11,7 +11,12 @@ import org.json.JSONException;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -68,6 +73,7 @@ public class HomeController {
     ModelAndView mv = new ModelAndView("home");
     //mv.addObject("sessionUser", user);
 
+    // userid should be a long
     String userId = "kevin";
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
@@ -76,6 +82,73 @@ public class HomeController {
     if (userObj != null) {
       Set<Course> courses = userObj.getCourses();
       mv.addObject("enrolledCourses", courses);
+    } else {
+      // add an error message here
+    }
+
+    return mv;
+
+  }
+
+  @RequestMapping("/addCourse")
+  public ModelAndView addCourse() {
+
+    ModelAndView mv = new ModelAndView("home");
+
+    // load up user from session
+    // userid should be a long
+    String userId = "kevin";
+    QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
+
+    // course id should be a parameter
+    long courseId = 1234;
+    Course addThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
+
+    // check to see if valid course
+    if (addThisCourse != null) {
+      if (userObj != null) {
+        userObj.addCourse(addThisCourse);
+        Set<Course> courses = userObj.getCourses();
+        mv.addObject("enrolledCourses", courses);
+
+        // will this create a duplicate?
+        ObjectifyService.ofy().save().entity(userObj).now();
+
+      } else {
+        // add an error message for invalid user?
+      }
+
+    } else {
+      // add an error message here for invalid course
+    }
+
+    return mv;
+
+  }
+
+  @RequestMapping("/createCourse")
+  public ModelAndView createCourse() {
+
+    ModelAndView mv = new ModelAndView("home");
+
+    // load up user from session
+    // userid should be a long
+    String userId = "kevin";
+    QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
+
+    if (userObj != null && userObj.isProfessor()) {
+      Course createThisCourse = new Course();
+      // get parameters from request for this course;
+      ObjectifyService.ofy().save().entity(createThisCourse).now();
+
+      // do we add this to professor's enrolled courses?
+      userObj.addCourse(createThisCourse);
+      ObjectifyService.ofy().save().entity(userObj).now();
+      Set<Course> courses = userObj.getCourses();
+      mv.addObject("enrolledCourses", courses);
+
+    } else {
+      // add an error message here for not being a professor
     }
 
     return mv;

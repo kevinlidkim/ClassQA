@@ -31,19 +31,19 @@ import com.googlecode.objectify.ObjectifyService;
 
 @Controller
 @SessionAttributes("sess")
-public class QAController {
+public class CourseController {
 
-  @RequestMapping("/question/{questionId}")
-  public ModelAndView loadQAPage(
-    @PathVariable long questionId) {
+  @RequestMapping("/course/{courseId}")
+  public ModelAndView loadCoursePage(
+    @PathVariable long courseId) {
 
     ModelAndView mv = new ModelAndView("course");
 
     // load up the course
-    Question loadThisQuestion = ObjectifyService.ofy().load().type(Question.class).id(questionId).now();
+    Course loadThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
 
-    if (loadThisQuestion != null) {
-      mv.addObject("questionInfo", loadThisQuestion);
+    if (loadThisCourse != null) {
+      mv.addObject("courseInfo", loadThisCourse);
     } else {
       // return error
     }
