@@ -9,11 +9,9 @@ import java.text.SimpleDateFormat;
 import org.json.*;
 import org.json.JSONException;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,9 +25,18 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
-@SessionAttributes("sess")
+@SessionAttributes("sessionUser")
 public class HomeController {
+
+  @ModelAttribute("sessionUser")
+  public String getInitializeSessionUser() {
+    String sessionUser = "default";
+    return sessionUser;
+  }
 
   @RequestMapping("/landing")
   public ModelAndView loadLandingPage() {
@@ -40,11 +47,26 @@ public class HomeController {
   @RequestMapping("/home")
   public ModelAndView loadHomePage(
           @RequestParam(value="user", required=false) String user,
-          @RequestParam(value="email", required=false) String email) {
+          @RequestParam(value="email", required=false) String email,
+          HttpServletRequest request) {
+
+    System.out.println(request.getSession().getAttributeNames());
+    System.out.println(request.getSession().getAttribute("sessionUser"));
+    request.getSession().setAttribute("sessionUser", user);
+    System.out.println(request.getSession().getAttribute("sessionUser"));
+
+//    if (user == null && email == null) {
+//      return loadLandingPage();
+//    }
+
+//    if(session.getAttribute("sessionUser") == null) {
+//      session.setAttribute("sessionUser", user);
+//    }
 
     // add params and checks for login. otherwise, redirect back to landing page
     // create a session upon login
     ModelAndView mv = new ModelAndView("home");
+    //mv.addObject("sessionUser", user);
 
     String userId = "kevin";
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
