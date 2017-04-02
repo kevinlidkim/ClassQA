@@ -9,6 +9,7 @@ import com.googlecode.objectify.annotation.Parent;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 
 @Entity
@@ -20,6 +21,7 @@ public class Course {
   public String department;
   public Date startDate;
   public Date endDate;
+  public List<Question> questions;
 
   public Course() {
     
