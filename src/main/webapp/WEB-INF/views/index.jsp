@@ -37,7 +37,7 @@
 
         var form = document.createElement("form");
         form.setAttribute("method", "post");
-        form.setAttribute("action", "/tdlm");
+        form.setAttribute("action", "/home");
         var params = {user: user, email: email};
         for(var key in params) {
             if(params.hasOwnProperty(key)) {
