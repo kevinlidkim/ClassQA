@@ -17,6 +17,11 @@
 
 <body>
 
+  <div>
+    <h1>${sessionUser} HOME PAGE</h1>
+  </div>
+  <br>
+
   <%-- ADDING CLASS BUTTON --%>
   <a class="button" data-open="addModal">Add Class</a>
 
@@ -96,6 +101,8 @@
   <script>
     $(document).foundation();
   </script>
+
+
   <script src="../../logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
