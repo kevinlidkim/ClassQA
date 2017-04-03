@@ -3,9 +3,7 @@
 
 <html>
 <head>
-<script src="../../logout.js"></script>
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-    <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
 </head>
 
 <body>
@@ -13,12 +11,11 @@
     QA PAGE
   </div>
   <header>
-      <a href="/home">Put Logo Here</a>
-      <a href="#">Add Class</a>
-      <a href="/landing" onclick="signOut();">Sign out</a>
+    <a href="/home">Put Logo Here</a>
+    <a href="#">Add Class</a>
+    <a href="/landing" onclick="signOut();">Sign out</a>
   </header>
 
-  <a href="#" onclick="signOut();">Sign out</a>
   <script src="../../logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>

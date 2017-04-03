@@ -11,12 +11,7 @@ import org.json.JSONException;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,7 +39,8 @@ public class HomeController {
   }
 
   @RequestMapping("/landing")
-  public ModelAndView loadLandingPage() {
+  public ModelAndView loadLandingPage(SessionStatus sessionStatus) {
+    sessionStatus.setComplete();
     ModelAndView mv = new ModelAndView("landing");
     return mv;
   }
@@ -53,25 +49,22 @@ public class HomeController {
   public ModelAndView loadHomePage(
           @RequestParam(value="user", required=false) String user,
           @RequestParam(value="email", required=false) String email,
-          HttpServletRequest request) {
+          @ModelAttribute("sessionUser") String sessionUser,
+          SessionStatus sessionStatus) {
 
-    System.out.println(request.getSession().getAttributeNames());
-    System.out.println(request.getSession().getAttribute("sessionUser"));
-    request.getSession().setAttribute("sessionUser", user);
-    System.out.println(request.getSession().getAttribute("sessionUser"));
-
-//    if (user == null && email == null) {
-//      return loadLandingPage();
-//    }
-
-//    if(session.getAttribute("sessionUser") == null) {
-//      session.setAttribute("sessionUser", user);
-//    }
+    if (user == null && email == null && sessionUser.equals("default")) {
+      return loadLandingPage(sessionStatus);
+    }
 
     // add params and checks for login. otherwise, redirect back to landing page
     // create a session upon login
+    //System.out.println(sessionUser);
     ModelAndView mv = new ModelAndView("home");
-    //mv.addObject("sessionUser", user);
+    if (user != null) {
+      // this is added to mv and updated in the session
+      mv.addObject("sessionUser", user);
+    }
+    //System.out.println(sessionUser);
 
     // userid should be a long
     String userId = "kevin";
