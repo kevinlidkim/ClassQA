@@ -1,15 +1,15 @@
 function onSuccess(googleUser) {
   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
 
-  var user = googleUser.getBasicProfile().getName();
+  //var user = googleUser.getBasicProfile().getName();
+  var firstName = googleUser.getBasicProfile().getGivenName();
+  var lastName = googleUser.getBasicProfile().getFamilyName();
   var email = googleUser.getBasicProfile().getEmail();
-  localStorage.setItem("user", user);
-  localStorage.setItem("email", email);
 
   var form = document.createElement("form");
   form.setAttribute("method", "post");
   form.setAttribute("action", "/home");
-  var params = {user: user, email: email};
+  var params = {firstName: firstName, lastName: lastName, email: email};
   for(var key in params) {
     if(params.hasOwnProperty(key)) {
       var hiddenField = document.createElement("input");

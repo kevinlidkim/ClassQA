@@ -99,13 +99,13 @@
   <%-- Content. --%>
 
   <div>
-    <h1>${sessionUser} HOME PAGE</h1>
+    <h1>${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
   </div>
 
-  <a href="#" onclick="signOut();">Sign out</a>
-  <script src="../../logout.js"></script>
+  <a href="/landing" onclick="signOut();">Sign out</a>
+  <script src="../../resources/js/logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-  
+
   <%-- load button funcions --%>
   <script src="../../resources/js/home.js"></script>
 </body>

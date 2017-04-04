@@ -3,22 +3,20 @@
 
 <html>
 <head>
-    <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
 </head>
 
-
-
 <body>
-<div>
+  <div>
     CLASS PAGE
-</div>
-<header>
+  </div>
+  <header>
     <a href="/home">Put Logo Here</a>
     <a href="#">Add Class</a>
     <a href="/landing" onclick="signOut();">Sign out</a>
-</header>
+  </header>
 
-<script src="../../logout.js"></script>
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  <script src="../../resources/js/logout.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 </html>
