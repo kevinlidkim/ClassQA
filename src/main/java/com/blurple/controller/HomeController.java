@@ -56,18 +56,20 @@ public class HomeController {
       return loadLandingPage(sessionStatus);
     }
 
-    // add params and checks for login. otherwise, redirect back to landing page
-    // create a session upon login
-    //System.out.println(sessionUser);
     ModelAndView mv = new ModelAndView("home");
     if (user != null) {
       // this is added to mv and updated in the session
       mv.addObject("sessionUser", user);
     }
-    //System.out.println(sessionUser);
 
-    // userid should be a long
-    long userId = 5649391675244544;
+    // testing purposes
+    QAUser newUser = new QAUser("kevin", "li", true);
+    ObjectifyService.ofy().save().entity(newUser).now();
+    System.out.println("creating new user");
+    long userId = newUser.getId();
+
+    // long userId = Long.parseLong("5649391675244544");
+    System.out.println(userId);
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     // load up all user information
@@ -75,8 +77,10 @@ public class HomeController {
     if (userObj != null) {
       Set<Course> courses = userObj.getCourses();
       mv.addObject("enrolledCourses", courses);
+      System.out.println("GOT USER");
     } else {
       // add an error message here
+      System.out.println("ERROR GETTING USER");
     }
 
     return mv;
@@ -90,7 +94,7 @@ public class HomeController {
 
     // load up user from session
     // userid should be a long
-    long userId = 5649391675244544;
+    long userId = Long.parseLong("5649391675244544");
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     // course id should be a parameter
@@ -129,7 +133,7 @@ public class HomeController {
 
     // load up user from session
     // userid should be a long
-    long userId = 5649391675244544;
+    long userId = Long.parseLong("5649391675244544");
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     if (userObj != null && userObj.isProfessor()) {

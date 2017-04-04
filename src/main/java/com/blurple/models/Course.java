@@ -22,9 +22,12 @@ public class Course {
   public Date startDate;
   public Date endDate;
   public List<Question> questions;
+  public String password;
 
-  public Course() {
-    
+  public Course(String courseCode, String department, String password) {
+    this.courseCode = courseCode;
+    this.department = department;
+    this.password = password;
   }
 
   public Course(String courseCode, String department, Date startDate, Date endDate) {
