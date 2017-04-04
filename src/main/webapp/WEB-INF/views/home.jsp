@@ -5,105 +5,108 @@
 <head>
   <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
   <link rel="shortcut icon" href="../../resources/images/favicon.ico" type="image/x-icon"/>
-  <script src="../../resources/js/jquery.js"></script>
-  <script src="../../resources/js/foundation.min.js"></script>
-  <script src="../../resources/js/what-input.js"></script>
-
-  <link rel="stylesheet" href="../../resources/css/foundation.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../resources/css/home.css">
+  <script src="../../resources/js/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <title>Home</title>
 </head>
 
 <body>
 
+  <nav class="navbar navbar-default">
+    <div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+      <div class="navbar-header">
+        <img src="../../resources/images/logo.png" alt="Logo" style="width:150px;">
+      </div>
+
+      <!-- Add Class Button -->
+      <button type="button" class="btn btn-default" style="margin-left: 25px;" data-toggle="modal" data-target="#addModal">Add Class</button>
+
+      <!-- Add Class Modal -->
+      <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add Class</h4>
+            </div>
+            <div class="modal-body">
+              <label>Course Code</label>
+              <input id="addCrsCode" type="text" name="" value="">
+
+              <label>Password</label>
+              <input id="addCrsPassword" type="text" name="" value="">
+
+            </div>
+            <div class="modal-footer">
+              <button id="addClassBtn" type="submit" class="btn btn-success">Add Class</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <%-- Create Class Button --%>
+      <button type="button" class="btn btn-default" style="margin-left: 25px;" data-toggle="modal" data-target="#createModal">Create Class</button>
+
+      <!-- Create Class Modal -->
+      <div id="createModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Create Class</h4>
+            </div>
+            <div class="modal-body">
+              <label>Course Code</label>
+              <input id="createCrsCode" type="text" name="" value="">
+
+              <label>Password</label>
+              <input id="createCrsPassword" type="text" name="" value="">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Additional Info</label><br>
+                  <textarea id="moreInfo" name="name" placeholder="..."></textarea>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button id="createClassBtn" type="submit" class="btn btn-success">Create Class</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <button type="button" class="btn btn-default" style="margin-left: 25px;">Load ClassPage</button>
+
+      <ul class="nav navbar-nav" >
+      </ul>
+    </div>
+  </nav>
+
   <div>
     <h1>${sessionUser} HOME PAGE</h1>
   </div>
-  <br>
 
-  <%-- ADDING CLASS BUTTON --%>
-  <a class="button" data-open="addModal">Add Class</a>
 
-  <%-- ADDING CLASS MODAL --%>
-  <div class="reveal" id="addModal" data-reveal>
-
-    <div class="revealHeader">
-      Add Class
-    </div>
-
-    <form class="" action="/addCourse" method="post">
-      <div class="row">
-        <div class="large-6 medium-6 columns">
-          <label>Class Id:</label>
-          <input type="text" name="classId" value="">
-        </div>
-        <div class="large-6 medium-6 columns">
-          <label>Password</label>
-          <input type="text" name="classPw" value="">
-        </div>
-
-        <input class="sucess button" type="submit" name="" value="Add Class">
-      </div>
-    </form>
-
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-      <span aria-hidden="false">&times;</span>
-    </button>
-  </div>
-
-  <%-- CREATING CLASS BUTTON --%>
-  <a class="button" data-open="createModal">Create Class</a>
-
-  <%-- CREATING CLASS MODAL --%>
-  <div class="reveal" id="createModal" data-reveal>
-
-    <div class="revealHeader">
-      Create Class
-    </div>
-
-    <form class="" action="/createCourse" method="post">
-      <div class="row">
-        <div class="large-6 medium-6 columns">
-          <label>Class Id:</label>
-          <input type="text" name="classId" value="">
-        </div>
-        <div class="large-6 medium-6 columns">
-          <label>Password</label>
-          <input type="text" name="classPw" value="">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="large-12 medium-12 columns">
-          <label>Additional Info</label>
-          <textarea placeholder="..."></textarea>
-        </div>
-      </div>
-
-      <input class="sucess button" type="submit" name="" value="Create Class">
-
-    </form>
-
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-      <span aria-hidden="false">&times;</span>
-    </button>
-  </div>
-
-  <%-- CREATING CLASS MODAL --%>
-  <form class="" action="/classPage" method="post">
-    <input class="button" type="submit" name="" value="class Page">
   </form>
 
-
   <a href="#" onclick="signOut();">Sign out</a>
-  <%-- ACTIVATE FOUNDATION --%>
-  <script>
-    $(document).foundation();
-  </script>
-
-
   <script src="../../logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  <script src="../../resources/js/home.js"></script>
 </body>
 </html>

@@ -97,6 +97,9 @@ public class HomeController {
     long courseId = 1234;
     Course addThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
 
+
+    System.out.print("ADDING COURSE");
+
     // check to see if valid course
     if (addThisCourse != null) {
       if (userObj != null) {
