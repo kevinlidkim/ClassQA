@@ -15,9 +15,11 @@
 
 <body>
 
+  <%-- NavBar --%>
   <nav class="navbar navbar-default">
     <div class="container-fluid" style="padding-left:0px; padding-right:0px;">
       <div class="navbar-header">
+        <%-- ClassQA Logo --%>
         <img src="../../resources/images/logo.png" alt="Logo" style="width:150px;">
       </div>
 
@@ -50,7 +52,6 @@
 
         </div>
       </div>
-
 
       <%-- Create Class Button --%>
       <button type="button" class="btn btn-default" style="margin-left: 25px;" data-toggle="modal" data-target="#createModal">Create Class</button>
@@ -88,25 +89,23 @@
         </div>
       </div>
 
-
-
-      <button type="button" class="btn btn-default" style="margin-left: 25px;">Load ClassPage</button>
+      <button id="loadClassBtn" type="button" class="btn btn-default" style="margin-left: 25px;">Load ClassPage</button>
 
       <ul class="nav navbar-nav" >
       </ul>
     </div>
   </nav>
 
+  <%-- Content. --%>
+
   <div>
     <h1>${sessionUser} HOME PAGE</h1>
   </div>
 
-
-  </form>
-
   <a href="#" onclick="signOut();">Sign out</a>
   <script src="../../logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  <%-- load button funcions --%>
   <script src="../../resources/js/home.js"></script>
 </body>
 </html>

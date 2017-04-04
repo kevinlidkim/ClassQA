@@ -1,7 +1,8 @@
-var addClassBtn = document.getElementById("addClassBtn");
-var createClassBtn = document.getElementById("createClassBtn");
+var addBtn = document.getElementById("addClassBtn");
+var createBtn = document.getElementById("createClassBtn");
+var loadBtn = document.getElementById("loadClassBtn");
 
-addClassBtn.onclick = function() {
+addBtn.onclick = function() {
 
   var crsCode = document.getElementById("addCrsCode").value;
   var crsPassword = document.getElementById("addCrsPassword").value;
@@ -31,7 +32,7 @@ addClassBtn.onclick = function() {
 
 }
 
-createClassBtn.onclick = function() {
+createBtn.onclick = function() {
 
   var crsCode = document.getElementById("createCrsCode").value;
   var crsPassword = document.getElementById("createCrsPassword").value;
@@ -52,6 +53,36 @@ createClassBtn.onclick = function() {
     },
     type: "POST",
     url: "/createCourse",
+    data: JSON.stringify(dataObj),
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(err) {
+       console.log(err);
+    }
+  });
+
+}
+
+loadBtn.onclick = function() {
+
+
+  var courseId = 0;
+  var courseUrl = "/course/" + courseId;
+
+  var dataObj = {
+    courseId: courseId,
+  };
+
+  console.log(dataObj);
+
+  $.ajax({
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    type: "POST",
+    url: courseUrl,
     data: JSON.stringify(dataObj),
     success: function(response) {
       console.log(response);
