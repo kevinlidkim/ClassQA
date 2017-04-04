@@ -33,9 +33,8 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
   @ModelAttribute("sessionUser")
-  public String getInitializeSessionUser() {
-    String sessionUser = "default";
-    return sessionUser;
+  public QAUser getInitializeSessionUser() {
+    return new QAUser("default", "default", "default", false);
   }
 
   @RequestMapping("/landing")
@@ -47,24 +46,32 @@ public class HomeController {
 
   @RequestMapping("/home")
   public ModelAndView loadHomePage(
-          @RequestParam(value="user", required=false) String user,
+          @RequestParam(value="firstName", required=false) String firstName,
+          @RequestParam(value="lastName", required=false) String lastName,
           @RequestParam(value="email", required=false) String email,
-          @ModelAttribute("sessionUser") String sessionUser,
+          @ModelAttribute("sessionUser") QAUser sessionUser,
           SessionStatus sessionStatus) {
 
-    if (user == null && email == null && sessionUser.equals("default")) {
+    // Accessing home without logging in first redirects to landing page
+    if (firstName == null && lastName == null && email == null && sessionUser.getFirstName().equals("default")) {
       return loadLandingPage(sessionStatus);
     }
 
     // add params and checks for login. otherwise, redirect back to landing page
     // create a session upon login
-    //System.out.println(sessionUser);
     ModelAndView mv = new ModelAndView("home");
-    if (user != null) {
-      // this is added to mv and updated in the session
-      mv.addObject("sessionUser", user);
+    if (firstName != null && lastName != null && email != null) {
+      //if sesionUser's id already exists, do nothing?
+      //else set new sessionUser values
+
+      // Set sessionUser params from google login
+      sessionUser.setFirstName(firstName);
+      sessionUser.setLastName(lastName);
+      sessionUser.setEmail(email);
+      // Add sessionUser session attribute to mv
+      mv.addObject("sessionUser", sessionUser);
+
     }
-    //System.out.println(sessionUser);
 
     // userid should be a long
     String userId = "kevin";

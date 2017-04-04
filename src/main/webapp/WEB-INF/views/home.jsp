@@ -16,9 +16,8 @@
 </head>
 
 <body>
-
   <div>
-    <h1>${sessionUser} HOME PAGE</h1>
+    <h1>${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
   </div>
   <br>
 
@@ -96,7 +95,7 @@
   </form>
 
 
-  <a href="#" onclick="signOut();">Sign out</a>
+  <a href="/landing" onclick="signOut();">Sign out</a>
   <%-- ACTIVATE FOUNDATION --%>
   <script>
     $(document).foundation();

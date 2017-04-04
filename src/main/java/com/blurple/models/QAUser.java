@@ -9,6 +9,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 
+import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 @Entity
-public class QAUser {
+public class QAUser implements Serializable {
   @Id public Long id;
 
   public String firstName;
@@ -32,18 +33,20 @@ public class QAUser {
     questions = new ArrayList<Question>();
   }
 
-  public QAUser(String firstName, String lastName, boolean isProfessor) {
+  public QAUser(String firstName, String lastName, String email, boolean isProfessor) {
     this.firstName = firstName;
     this.lastName = lastName;
+    this.email = email;
     this.isProfessor = isProfessor;
     this.courses = new HashSet<Course>();
+    this.questions = new ArrayList<Question>();
   }
 
   public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName() {
+  public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
@@ -51,7 +54,7 @@ public class QAUser {
     return lastName;
   }
 
-  public void setLastName() {
+  public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
@@ -59,7 +62,7 @@ public class QAUser {
     return email;
   }
 
-  public void seEmail(String email) {
+  public void setEmail(String email) {
     this.email = email;
   }
 
@@ -77,11 +80,19 @@ public class QAUser {
 
   public void removeCourse(Course course) {
     courses.remove(course);
-  };
+  }
 
   public void removeAllCourses() {
     courses.clear();
   }
+
+  public List<Question> getQuestions() { return questions; }
+
+  public void addQuuestion(Question question) { questions.add(question); }
+
+  public void removeQuestion(Question question) { questions.remove(question); }
+
+  public void removeAllQuestions(Question question) { questions.clear(); }
 
   public Long getId() {
     return id;
