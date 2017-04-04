@@ -67,7 +67,7 @@ public class HomeController {
     //System.out.println(sessionUser);
 
     // userid should be a long
-    String userId = "kevin";
+    long userId = 5649391675244544;
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     // load up all user information
@@ -90,7 +90,7 @@ public class HomeController {
 
     // load up user from session
     // userid should be a long
-    String userId = "kevin";
+    long userId = 5649391675244544;
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     // course id should be a parameter
@@ -129,7 +129,7 @@ public class HomeController {
 
     // load up user from session
     // userid should be a long
-    String userId = "kevin";
+    long userId = 5649391675244544;
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     if (userObj != null && userObj.isProfessor()) {
