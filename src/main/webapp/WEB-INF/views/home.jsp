@@ -100,6 +100,7 @@
 
   <div>
     <h1>${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
+    <h1> Enrolled Courses: ${sessionUser.courses}</h1>
   </div>
 
   <a href="/landing" onclick="signOut();">Sign out</a>

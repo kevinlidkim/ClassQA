@@ -32,6 +32,7 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes("sessionUser")
 public class HomeController {
 
+  //sessionUser is created before controller methods are called
   @ModelAttribute("sessionUser")
   public QAUser getInitializeSessionUser() {
     return new QAUser("default", "default", "default", false);
@@ -52,46 +53,46 @@ public class HomeController {
           @ModelAttribute("sessionUser") QAUser sessionUser,
           SessionStatus sessionStatus) {
 
-    // Accessing home without logging in first redirects to landing page
+    ModelAndView mv = new ModelAndView("home");
+
+    // Redirect to landing page if not logging in from landing page
     if (firstName == null && lastName == null && email == null && sessionUser.getFirstName().equals("default")) {
       return loadLandingPage(sessionStatus);
     }
 
-    // add params and checks for login. otherwise, redirect back to landing page
-    // create a session upon login
-    ModelAndView mv = new ModelAndView("home");
+    // If logging in from /landing
     if (firstName != null && lastName != null && email != null) {
-      // if sesionUser's id already exists, do nothing?
-      // else set new sessionUser values
+      //Check if person is a new user by their email
+      QAUser checkUser = ObjectifyService.ofy().load().type(QAUser.class).filter("email", email).first().now();
 
-      // Set sessionUser params from google login
-      sessionUser.setFirstName(firstName);
-      sessionUser.setLastName(lastName);
-      sessionUser.setEmail(email);
+      // If user doesn't exist, add the new user to the datastore
+      if (checkUser == null) {
+        // Set sessionUser params from google login
+        sessionUser.setFirstName(firstName);
+        sessionUser.setLastName(lastName);
+        sessionUser.setEmail(email);
+        sessionUser.setProfessor();
+        // Add to datastore
+        ObjectifyService.ofy().save().entity(sessionUser).now();
+        //System.out.println("user is new, " + sessionUser.getEmail() + " added to datastore");
+
+      }
+      // Else set session user to the checkUser found in the datastore
+      else {
+        sessionUser = checkUser;
+        //System.out.println("User already exists in datastore");
+        //System.out.println("id: " + checkUser.getId() + ", " + sessionUser.getId());
+      }
+
       // Add sessionUser session attribute to mv
       mv.addObject("sessionUser", sessionUser);
 
     }
-
-    // testing purposes
-    QAUser newUser = new QAUser("kevin", "li", true);
-    ObjectifyService.ofy().save().entity(newUser).now();
-    System.out.println("creating new user");
-    long userId = newUser.getId();
-
-    // long userId = Long.parseLong("5649391675244544");
-    System.out.println(userId);
-    QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
-
-    // load up all user information
-    // might need to parse to json
-    if (userObj != null) {
-      Set<Course> courses = userObj.getCourses();
-      mv.addObject("enrolledCourses", courses);
-      System.out.println("GOT USER");
-    } else {
-      // add an error message here
-      System.out.println("ERROR GETTING USER");
+    // Not logging in from /landing, but never logged out from a previous session
+    else {
+        // sessionUser should be the same, don't need to do anything?
+      //QAUser qau = ObjectifyService.ofy().load().type(QAUser.class).filter("email", email).first().now();
+      //System.out.println("id of sessionUser now: " + sessionUser.getId());;
     }
 
     return mv;

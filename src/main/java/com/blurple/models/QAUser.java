@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 @Entity
+@Index
 public class QAUser implements Serializable {
   @Id public Long id;
 
@@ -69,6 +70,8 @@ public class QAUser implements Serializable {
   public boolean isProfessor() {
     return isProfessor;
   }
+
+  public void setProfessor() { isProfessor = true; }
 
   public HashSet<Course> getCourses() {
     return courses;

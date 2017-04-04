@@ -38,7 +38,7 @@
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "/home");
-        var params = {user: user, email: email};
+        var params = {user: user, emaill: email};
         for(var key in params) {
             if(params.hasOwnProperty(key)) {
                 var hiddenField = document.createElement("input");

@@ -19,10 +19,14 @@ public class Course {
   public String courseCode;
   public String courseName;
   public String department;
+  public String password;
   public Date startDate;
   public Date endDate;
   public List<Question> questions;
-  public String password;
+
+  public Course() {
+
+  }
 
   public Course(String courseCode, String department, String password) {
     this.courseCode = courseCode;
@@ -60,6 +64,10 @@ public class Course {
   public void setDepartment(String department) {
     this.department = department;
   }
+
+  public String getPassword() { return password; }
+
+  public void setPassword(String password) { this.password = password; }
 
   public Date getStartDate() {
     return startDate;
