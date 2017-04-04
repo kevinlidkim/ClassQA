@@ -16,7 +16,7 @@
     <a href="/landing" onclick="signOut();">Sign out</a>
   </header>
 
-  <script src="../../logout.js"></script>
+  <script src="../../resources/js/logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 </html>

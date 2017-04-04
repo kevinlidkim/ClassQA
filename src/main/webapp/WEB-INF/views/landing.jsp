@@ -13,7 +13,7 @@
   </div>
   <div id="my-signin2"></div>
 
-  <script src="../../login.js"></script>
+  <script src="../../resources/js/login.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
 </html>
