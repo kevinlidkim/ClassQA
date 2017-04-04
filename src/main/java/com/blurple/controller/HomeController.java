@@ -74,7 +74,7 @@ public class HomeController {
     }
 
     // userid should be a long
-    String userId = "kevin";
+    long userId = 5649391675244544;
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     // load up all user information
@@ -97,12 +97,15 @@ public class HomeController {
 
     // load up user from session
     // userid should be a long
-    String userId = "kevin";
+    long userId = 5649391675244544;
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     // course id should be a parameter
     long courseId = 1234;
     Course addThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
+
+
+    System.out.print("ADDING COURSE");
 
     // check to see if valid course
     if (addThisCourse != null) {
@@ -133,7 +136,7 @@ public class HomeController {
 
     // load up user from session
     // userid should be a long
-    String userId = "kevin";
+    long userId = 5649391675244544;
     QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
 
     if (userObj != null && userObj.isProfessor()) {
