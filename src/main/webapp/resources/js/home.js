@@ -9,7 +9,7 @@ addBtn.onclick = function() {
 
   var dataObj = {
     crsCode: crsCode,
-    crsPassword: crsPassword,
+    crsPassword: crsPassword
   };
 
   console.log(dataObj);
@@ -71,7 +71,7 @@ loadBtn.onclick = function() {
   var courseUrl = "/course/" + courseId;
 
   var dataObj = {
-    courseId: courseId,
+    courseId: courseId
   };
 
   console.log(dataObj);
