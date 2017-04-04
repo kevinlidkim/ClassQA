@@ -41,7 +41,7 @@ createBtn.onclick = function() {
   var dataObj = {
     crsCode: crsCode,
     crsPassword: crsPassword,
-    detai: detail
+    detail: detail
   };
 
   console.log(dataObj);

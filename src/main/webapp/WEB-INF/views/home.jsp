@@ -17,14 +17,13 @@
 
   <%-- NavBar --%>
   <nav class="navbar navbar-default">
-    <div class="container-fluid" style="padding-left:0px; padding-right:0px;">
-      <div class="navbar-header">
-        <%-- ClassQA Logo --%>
-        <img src="../../resources/images/logo.png" alt="Logo" style="width:150px;">
-      </div>
+    <div class="container-fluid noPadding">
+
+      <%-- ClassQA Logo --%>
+      <img id="nav-logo" src="../../resources/images/logo.png" alt="Logo">
 
       <!-- Add Class Button -->
-      <button type="button" class="btn btn-default" style="margin-left: 25px;" data-toggle="modal" data-target="#addModal">Add Class</button>
+      <button type="button" class="btn btn-org navbar-btn" data-toggle="modal" data-target="#addModal">Add Class</button>
 
       <!-- Add Class Modal -->
       <div id="addModal" class="modal fade" role="dialog">
@@ -54,7 +53,7 @@
       </div>
 
       <%-- Create Class Button --%>
-      <button type="button" class="btn btn-default" style="margin-left: 25px;" data-toggle="modal" data-target="#createModal">Create Class</button>
+      <button type="button" class="btn btn-org navbar-btn" data-toggle="modal" data-target="#createModal">Create Class</button>
 
       <!-- Create Class Modal -->
       <div id="createModal" class="modal fade" role="dialog">
@@ -89,10 +88,11 @@
         </div>
       </div>
 
-      <button id="loadClassBtn" type="button" class="btn btn-default" style="margin-left: 25px;">Load ClassPage</button>
+      <!-- Load Class Button -->
 
-      <ul class="nav navbar-nav" >
-      </ul>
+      <button id="loadClassBtn" type="button" class="btn navbar-btn btn-org">Load ClassPage</button>
+
+      <a href="/landing" onclick="signOut();" style="float:right">Sign out</a>
     </div>
   </nav>
 
@@ -103,10 +103,17 @@
     <h1> Enrolled Courses: ${sessionUser.courses}</h1>
   </div>
 
-  <a href="/landing" onclick="signOut();">Sign out</a>
+
+  <div class="footer">
+    <div class="container-fluid noPadding">
+
+    </div>
+  </div>
+
+  <%-- JAVASCRIPTS --%>
+
   <script src="../../resources/js/logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-
   <%-- load button funcions --%>
   <script src="../../resources/js/home.js"></script>
 </body>
