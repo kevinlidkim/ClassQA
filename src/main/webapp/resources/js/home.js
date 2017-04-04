@@ -66,7 +66,7 @@ createBtn.onclick = function() {
 
 loadBtn.onclick = function() {
 
-
+  //NEED TO PROVIDE courseId
   var courseId = 0;
   var courseUrl = "/course/" + courseId;
 

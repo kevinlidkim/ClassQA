@@ -105,6 +105,7 @@
   <a href="#" onclick="signOut();">Sign out</a>
   <script src="../../logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
   <%-- load button funcions --%>
   <script src="../../resources/js/home.js"></script>
 </body>
