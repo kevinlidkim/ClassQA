@@ -28,9 +28,8 @@ public class Course {
 
   }
 
-  public Course(String courseCode, String department, String password) {
+  public Course(String courseCode, String password) {
     this.courseCode = courseCode;
-    this.department = department;
     this.password = password;
   }
 

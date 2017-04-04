@@ -1,7 +1,6 @@
 function onSuccess(googleUser) {
   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
 
-  //var user = googleUser.getBasicProfile().getName();
   var firstName = googleUser.getBasicProfile().getGivenName();
   var lastName = googleUser.getBasicProfile().getFamilyName();
   var email = googleUser.getBasicProfile().getEmail();

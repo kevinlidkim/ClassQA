@@ -35,7 +35,7 @@ public class HomeController {
   //sessionUser is created before controller methods are called
   @ModelAttribute("sessionUser")
   public QAUser getInitializeSessionUser() {
-    return new QAUser("default", "default", "default", false);
+    return new QAUser("default", "default", "default", true);
   }
 
   @RequestMapping("/landing")
@@ -139,28 +139,36 @@ public class HomeController {
   }
 
   @RequestMapping("/createCourse")
-  public ModelAndView createCourse() {
+  public ModelAndView createCourse(
+          @RequestParam(value="crsCode") String crsCode,
+          @RequestParam(value="crsPassword") String crsPassword,
+          @RequestParam(value="detail") String detail,
+          @ModelAttribute("sessionUser") QAUser sessionUser) {
 
     ModelAndView mv = new ModelAndView("home");
 
     // load up user from session
     // userid should be a long
-    long userId = Long.parseLong("5649391675244544");
-    QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
+    //long userId = Long.parseLong("5649391675244544");//
+    // QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
+    long userId = sessionUser.getId();
 
-    if (userObj != null && userObj.isProfessor()) {
-      Course createThisCourse = new Course();
+
+    if (sessionUser.isProfessor()) {
+      Course createThisCourse = new Course(crsCode, crsPassword);
       // get parameters from request for this course;
       ObjectifyService.ofy().save().entity(createThisCourse).now();
 
       // do we add this to professor's enrolled courses?
-      userObj.addCourse(createThisCourse);
-      ObjectifyService.ofy().save().entity(userObj).now();
-      Set<Course> courses = userObj.getCourses();
-      mv.addObject("enrolledCourses", courses);
+      sessionUser.addCourse(createThisCourse);
+      ObjectifyService.ofy().save().entity(sessionUser).now();
+      //Set<Course> courses = userObj.getCourses();
+      //mv.addObject("enrolledCourses", courses);
+      mv.addObject("sessionUser", sessionUser);
 
     } else {
       // add an error message here for not being a professor
+        System.out.println("not a profesor");
     }
 
     return mv;
