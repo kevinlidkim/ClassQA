@@ -8,12 +8,13 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 
+import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Answer {
+public class Answer implements Serializable {
     @Id public Long id;
 
     public Long questionId;

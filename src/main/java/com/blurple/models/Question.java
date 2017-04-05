@@ -3,6 +3,7 @@ package com.blurple.models;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 
 @Entity
-public class Question {
+public class Question implements Serializable {
   @Id public Long id;
 
   public Long courseId;

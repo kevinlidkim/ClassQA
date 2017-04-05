@@ -6,6 +6,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 
+import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
@@ -13,13 +14,14 @@ import java.util.ArrayList;
 
 
 @Entity
-public class Course {
+public class Course implements Serializable {
   @Id public Long id;
 
   public String courseCode;
   public String courseName;
   public String department;
   public String password;
+  public String info;
   public Date startDate;
   public Date endDate;
   public List<Question> questions;
@@ -67,6 +69,10 @@ public class Course {
   public String getPassword() { return password; }
 
   public void setPassword(String password) { this.password = password; }
+
+  public String getInfo() { return info; }
+
+  public void setInfo(String info) { this.info = info; }
 
   public Date getStartDate() {
     return startDate;
