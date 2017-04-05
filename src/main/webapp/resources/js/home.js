@@ -45,6 +45,7 @@ createBtn.onclick = function() {
   };
 
   console.log(dataObj);
+  console.log(JSON.stringify(dataObj));
 
   $.ajax({
     headers: {
