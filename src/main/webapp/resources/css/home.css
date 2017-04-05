@@ -4,6 +4,38 @@
     border: 1px dashed red.
 }
 
+.noPadding {
+  padding: 0px;
+}
+
+#nav-logo {
+  width: 175px;
+  margin-left: 25px;
+}
+
 .blurple {
   background-color: #7289DA;
+  /*rgb(114,137,218)*/
+}
+
+.navbar {
+  background-color: #336699;
+}
+
+.footer {
+  /*BLUE*/
+  /*background-color: #336699;
+  height:50px;*/
+}
+
+.btn-org {
+  background-color: #ff7f10;
+  color: white;
+  border: none;
+  margin-left: 25px;
+}
+
+.btn-org:hover {
+  background-color: #ff9940;
+  color: white;
 }
