@@ -140,35 +140,31 @@ public class HomeController {
 
   @RequestMapping("/createCourse")
   public ModelAndView createCourse(
-          @RequestParam(value="crsCode") String crsCode,
-          @RequestParam(value="crsPassword") String crsPassword,
-          @RequestParam(value="detail") String detail,
-          @ModelAttribute("sessionUser") QAUser sessionUser) {
+          @RequestBody String input,
+          @ModelAttribute("sessionUser") QAUser sessionUser) throws Exception{
 
     ModelAndView mv = new ModelAndView("home");
 
-    // load up user from session
-    // userid should be a long
-    //long userId = Long.parseLong("5649391675244544");//
-    // QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
-    long userId = sessionUser.getId();
-
+      JSONObject request = new JSONObject(input);
+      String crsCode = request.getString("crsCode");
+      String crsPassword = request.getString("crsPassword");
+      String info = request.getString("detail");
+      System.out.println(crsCode + " " + crsPassword + " " + info);
 
     if (sessionUser.isProfessor()) {
       Course createThisCourse = new Course(crsCode, crsPassword);
+      createThisCourse.setInfo(info);
       // get parameters from request for this course;
       ObjectifyService.ofy().save().entity(createThisCourse).now();
 
       // do we add this to professor's enrolled courses?
       sessionUser.addCourse(createThisCourse);
       ObjectifyService.ofy().save().entity(sessionUser).now();
-      //Set<Course> courses = userObj.getCourses();
-      //mv.addObject("enrolledCourses", courses);
       mv.addObject("sessionUser", sessionUser);
 
     } else {
       // add an error message here for not being a professor
-        System.out.println("not a profesor");
+        System.out.println("User is not a profesor");
     }
 
     return mv;

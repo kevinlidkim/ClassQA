@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -99,8 +100,14 @@
   <%-- Content. --%>
 
   <div>
-    <h1>${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
-    <h1> Enrolled Courses: ${sessionUser.courses}</h1>
+    <h1> ${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
+    <p>Professor: ${sessionUser.professor} </p>
+    <h1> Enrolled Courses:</h1>
+    <c:forEach items="${sessionUser.courses}" var="course">
+      <h1>${course.courseCode}</h1>
+      <p>${course.info}<p>
+    </c:forEach>
+
   </div>
 
 
