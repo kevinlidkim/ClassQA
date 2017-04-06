@@ -35,7 +35,7 @@
   margin-left: 25px;
 }
 
-.btn-org:hover {
+.btn-org:hover, .btn-org:active, .btn-org:active {
   background-color: #ff9940;
   color: white;
 }
