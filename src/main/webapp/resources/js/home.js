@@ -23,7 +23,7 @@ addBtn.onclick = function() {
     url: "/addCourse",
     data: JSON.stringify(dataObj),
     success: function(response) {
-      console.log(response);
+      window.location.href = "/home";
     },
     error: function(err) {
        console.log(err);

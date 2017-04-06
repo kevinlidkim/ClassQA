@@ -2,6 +2,7 @@ package com.blurple.models;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 import java.io.Serializable;
 import java.lang.String;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 
 @Entity
+@Index
 public class Question implements Serializable {
   @Id public Long id;
 

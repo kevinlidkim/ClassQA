@@ -25,7 +25,7 @@ public class QAUser implements Serializable {
   public String firstName;
   public String lastName;
   public String email;
-  public boolean isProfessor;
+  public boolean isProfessor; // default value is false
   public HashSet<Course> courses;
   public List<Question> questions;
 
@@ -34,11 +34,10 @@ public class QAUser implements Serializable {
     questions = new ArrayList<Question>();
   }
 
-  public QAUser(String firstName, String lastName, String email, boolean isProfessor) {
+  public QAUser(String firstName, String lastName, String email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.isProfessor = isProfessor;
     this.courses = new HashSet<Course>();
     this.questions = new ArrayList<Question>();
   }
@@ -72,6 +71,8 @@ public class QAUser implements Serializable {
   }
 
   public void setProfessor() { isProfessor = true; }
+
+  public void setStudent() { isProfessor = false; }
 
   public HashSet<Course> getCourses() {
     return courses;

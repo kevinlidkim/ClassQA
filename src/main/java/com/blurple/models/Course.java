@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 
 @Entity
+@Index
 public class Course implements Serializable {
   @Id public Long id;
 
