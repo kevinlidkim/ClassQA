@@ -35,7 +35,7 @@ public class HomeController {
   //sessionUser is created before controller methods are called
   @ModelAttribute("sessionUser")
   public QAUser getInitializeSessionUser() {
-    return new QAUser("default", "default", "default", true);
+    return new QAUser("default", "default", "default");
   }
 
   @RequestMapping("/landing")
@@ -71,7 +71,6 @@ public class HomeController {
         sessionUser.setFirstName(firstName);
         sessionUser.setLastName(lastName);
         sessionUser.setEmail(email);
-        sessionUser.setProfessor();
         // Add to datastore
         ObjectifyService.ofy().save().entity(sessionUser).now();
         //System.out.println("user is new, " + sessionUser.getEmail() + " added to datastore");
@@ -95,43 +94,60 @@ public class HomeController {
       //System.out.println("id of sessionUser now: " + sessionUser.getId());;
     }
 
+    System.out.println("courses in datastore:");
+    List<Course> list = ObjectifyService.ofy().load().type(Course.class).list();
+    for (Course c : list) {
+      System.out.println(c.getId() + " " + c.getCourseCode() + " " + c.getPassword());
+    }
+    System.out.println("courses in sessionUser:");
+    for (Course c : sessionUser.getCourses()) {
+      System.out.println(c.getId() + " " + c.getCourseCode() + " " + c.getPassword());
+    }
+    System.out.println("----------------------------");
+
     return mv;
 
   }
 
   @RequestMapping("/addCourse")
-  public ModelAndView addCourse() {
+  public ModelAndView addCourse(
+          @RequestBody String input,
+          @ModelAttribute("sessionUser") QAUser sessionUser) throws Exception {
 
     ModelAndView mv = new ModelAndView("home");
 
-    // load up user from session
-    // userid should be a long
-    long userId = Long.parseLong("5649391675244544");
-    QAUser userObj = ObjectifyService.ofy().load().type(QAUser.class).id(userId).now();
+    JSONObject request = new JSONObject(input);
+    String crsCode = request.getString("crsCode");
+    String crsPassword = request.getString("crsPassword");
 
     // course id should be a parameter
-    long courseId = 1234;
-    Course addThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
+    Course addThisCourse = ObjectifyService.ofy().load().type(Course.class)
+            .filter("courseCode", crsCode)
+            .filter("password", crsPassword).first().now();
 
-
-    System.out.print("ADDING COURSE");
+    System.out.println("possible courses to add:");
+    List<Course> list = ObjectifyService.ofy().load().type(Course.class).list();
+    for (Course c : list) {
+      System.out.println(c.getId() + " " + c.getCourseCode() + " " + c.getPassword());
+    }
+    System.out.println("----------------------------");
 
     // check to see if valid course
     if (addThisCourse != null) {
-      if (userObj != null) {
-        userObj.addCourse(addThisCourse);
-        Set<Course> courses = userObj.getCourses();
-        mv.addObject("enrolledCourses", courses);
-
-        // will this create a duplicate?
-        ObjectifyService.ofy().save().entity(userObj).now();
+      if (sessionUser.isProfessor() == false) {
+        sessionUser.addCourse(addThisCourse);
+        ObjectifyService.ofy().save().entity(sessionUser).now();
+        // is this redundant with being a session attribute already?
+        mv.addObject("sessionUser", sessionUser);
 
       } else {
         // add an error message for invalid user?
+        System.out.println("User is not a student");
       }
 
     } else {
       // add an error message here for invalid course
+      System.out.println("Not a valid course");
     }
 
     return mv;
@@ -149,12 +165,19 @@ public class HomeController {
       String crsCode = request.getString("crsCode");
       String crsPassword = request.getString("crsPassword");
       String info = request.getString("detail");
-      System.out.println(crsCode + " " + crsPassword + " " + info);
 
     if (sessionUser.isProfessor()) {
       Course createThisCourse = new Course(crsCode, crsPassword);
       createThisCourse.setInfo(info);
-      // get parameters from request for this course;
+
+      System.out.println("before:");
+      List<Course> list1 = ObjectifyService.ofy().load().type(Course.class).list();
+      for (Course c : list1) {
+        System.out.println(c.getId() + " " + c.getCourseCode() + " " + c.getPassword());
+      }
+
+
+      // save created course in the datastore
       ObjectifyService.ofy().save().entity(createThisCourse).now();
 
       // do we add this to professor's enrolled courses?
@@ -166,6 +189,13 @@ public class HomeController {
       // add an error message here for not being a professor
         System.out.println("User is not a profesor");
     }
+
+    System.out.println("after:");
+    List<Course> list = ObjectifyService.ofy().load().type(Course.class).list();
+    for (Course c : list) {
+      System.out.println(c.getId() + " " + c.getCourseCode() + " " + c.getPassword());
+    }
+    System.out.println("----------------------------");
 
     return mv;
 

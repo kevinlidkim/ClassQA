@@ -101,10 +101,19 @@
 
   <div>
     <h1> ${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
-    <p>Professor: ${sessionUser.professor} </p>
+
+    <c:choose>
+      <c:when test="${sessionUser.professor == true}">
+        <p>Professor</p>
+      </c:when>
+      <c:otherwise>
+        <p>Student</p>
+      </c:otherwise>
+    </c:choose>
+
     <h1> Enrolled Courses:</h1>
     <c:forEach items="${sessionUser.courses}" var="course">
-      <h1>${course.courseCode}</h1>
+      <h1 id="${course.id}">${course.courseCode}</h1>
       <p>${course.info}<p>
     </c:forEach>
 
