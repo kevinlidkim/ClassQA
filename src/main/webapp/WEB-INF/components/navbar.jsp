@@ -75,6 +75,8 @@
 
     <button id="loadClassBtn" type="button" class="btn navbar-btn btn-org">Load ClassPage</button>
 
-    <a href="/landing" onclick="signOut();" style="float:right">Sign out</a>
+    <a href="/landing" onclick="signOut();" style="float:right">
+      <button class="btn btn-warning navbar-btn" type="button" name="button">Sign out</button>
+    </a>
   </div>
 </nav>

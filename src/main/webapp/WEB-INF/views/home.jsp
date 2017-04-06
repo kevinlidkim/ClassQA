@@ -22,7 +22,7 @@
 
   <%-- Content. --%>
 
-  <div>
+  <div class="container">
     <h1> ${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
 
     <c:choose>
@@ -41,13 +41,26 @@
     </c:forEach>
 
   </div>
-
-
-  <div class="footer">
-    <div class="container-fluid noPadding">
-
-    </div>
-  </div>
+  <footer class="footer">
+      <div class="container footer-container">
+        <div class="row">
+          <div class="col-md-6">
+            <img id="nav-logo" src="../../resources/images/logo.png" alt="Logo">
+          </div>
+          <div class="col-md-6">
+            <div class="">
+              <a href="#">Contact Us</a>
+            </div>
+            <div class="">
+              <a href="#">About Team</a>
+            </div>
+            <div class="">
+              <a href="#">Send Us Feedback!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </footer>
 
   <%-- JAVASCRIPTS --%>
 
