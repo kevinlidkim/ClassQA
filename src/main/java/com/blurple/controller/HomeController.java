@@ -71,6 +71,7 @@ public class HomeController {
         sessionUser.setFirstName(firstName);
         sessionUser.setLastName(lastName);
         sessionUser.setEmail(email);
+
         // Add to datastore
         ObjectifyService.ofy().save().entity(sessionUser).now();
         //System.out.println("user is new, " + sessionUser.getEmail() + " added to datastore");
@@ -167,7 +168,6 @@ public class HomeController {
       String crsPassword = request.getString("crsPassword");
       String info = request.getString("detail");
 
-      //sessionUser.isProfessor()
     if (sessionUser.isProfessor()) {
       Course createThisCourse = new Course(crsCode, crsPassword);
       createThisCourse.setInfo(info);
