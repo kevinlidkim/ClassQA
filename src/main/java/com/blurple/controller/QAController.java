@@ -53,4 +53,18 @@ public class QAController {
 
     return mv;
   }
+
+  @RequestMapping("/question")
+  public ModelAndView loadQA1Page() {
+
+    ModelAndView mv = new ModelAndView("qa");
+
+    // load up the course
+
+
+    // added questions field to course so its easier for us to load it
+    // we probably don't need the questions field inside QAUser then
+
+    return mv;
+  }
 }

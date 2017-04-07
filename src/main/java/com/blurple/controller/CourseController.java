@@ -53,4 +53,18 @@ public class CourseController {
 
     return mv;
   }
+
+  @RequestMapping("/course")
+  public ModelAndView load() {
+
+    ModelAndView mv = new ModelAndView("course");
+
+    // load up the course
+
+
+    // added questions field to course so its easier for us to load it
+    // we probably don't need the questions field inside QAUser then
+
+    return mv;
+  }
 }

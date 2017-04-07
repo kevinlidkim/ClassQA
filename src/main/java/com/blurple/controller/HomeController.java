@@ -79,6 +79,7 @@ public class HomeController {
       // Else set session user to the checkUser found in the datastore
       else {
         sessionUser = checkUser;
+
         //System.out.println("User already exists in datastore");
         //System.out.println("id: " + checkUser.getId() + ", " + sessionUser.getId());
       }
@@ -166,7 +167,8 @@ public class HomeController {
       String crsPassword = request.getString("crsPassword");
       String info = request.getString("detail");
 
-    if (sessionUser.isProfessor()) {
+      //sessionUser.isProfessor()
+    if (true) {
       Course createThisCourse = new Course(crsCode, crsPassword);
       createThisCourse.setInfo(info);
 

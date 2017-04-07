@@ -7,9 +7,10 @@
   <meta name="google-signin-client_id" content="874074052748-hsjcp5bhstjnp8osn72ktpgaq16kk1ia.apps.googleusercontent.com">
   <link rel="shortcut icon" href="../../resources/images/favicon.ico" type="image/x-icon"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../resources/css/home.css">
+  <link rel="stylesheet" href="../../resources/css/main.css">
   <script src="../../resources/js/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../../resources/js/main.js"></script>
 
   <title>Home</title>
 </head>
@@ -41,32 +42,16 @@
     </c:forEach>
 
   </div>
-  <footer class="footer">
-      <div class="container footer-container">
-        <div class="row">
-          <div class="col-md-6">
-            <img id="nav-logo" src="../../resources/images/logo.png" alt="Logo">
-          </div>
-          <div class="col-md-6">
-            <div class="">
-              <a href="#">Contact Us</a>
-            </div>
-            <div class="">
-              <a href="#">About Team</a>
-            </div>
-            <div class="">
-              <a href="#">Send Us Feedback!</a>
-            </div>
-          </div>
-        </div>
-      </div>
-  </footer>
+
+  <%-- Footer --%>
+  <%@ include file="../components/footer.jsp"%>
+  <%-- Footer End --%>
+
 
   <%-- JAVASCRIPTS --%>
 
   <script src="../../resources/js/logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
   <%-- load button funcions --%>
-  <script src="../../resources/js/home.js"></script>
 </body>
 </html>
