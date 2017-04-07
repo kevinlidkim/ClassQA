@@ -168,7 +168,7 @@ public class HomeController {
       String info = request.getString("detail");
 
       //sessionUser.isProfessor()
-    if (true) {
+    if (sessionUser.isProfessor()) {
       Course createThisCourse = new Course(crsCode, crsPassword);
       createThisCourse.setInfo(info);
 

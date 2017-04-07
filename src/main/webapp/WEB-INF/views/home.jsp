@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="../../resources/css/main.css">
   <script src="../../resources/js/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../../resources/js/main.js"></script>
 
   <title>Home</title>
 </head>
@@ -41,6 +40,19 @@
       <p>${course.info}<p>
     </c:forEach>
 
+    <%-- PANEL --%>
+    <h2>Class example:</h2>
+    <div class="panel panel-default" style="width:20%">
+      <div class="panel-heading">Class name</div>
+      <div class="panel-body" style="height:100px">
+        class Content
+        <br>
+        click to go to class
+      </div>
+    </div>
+
+    <div height="300px;"></div>
+
   </div>
 
   <%-- Footer --%>
@@ -49,7 +61,7 @@
 
 
   <%-- JAVASCRIPTS --%>
-
+  <script src="../../resources/js/main.js"></script>
   <script src="../../resources/js/logout.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
   <%-- load button funcions --%>

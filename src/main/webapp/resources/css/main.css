@@ -23,7 +23,8 @@
 
 .navbar {
   /*background-color: #336699;*/
-  background-color: #7289DA;
+  background-color: rgba(200,200,200, .1);
+  /*background-color: #7289DA;*/
   border-radius: 0px;
   border: none;
 }
@@ -31,6 +32,10 @@
 .container {
   margin-left: 10%;
   margin-right: 10%;
+}
+
+body {
+  /*background-image: url(../images/pattern.png);*/
 }
 
 #footerList {
@@ -52,13 +57,14 @@
 .btn-org {
   /*background-color: #ff7f10;*/
   /*lighter blurple*/
-  background-color: #8699df;
+  /*background-color: #8699df;*/
+  background-color: #7289DA;
   color: white;
   border: none;
   margin-left: 25px;
 }
 
 .btn-org:hover, .btn-org:active, .btn-org:focus {
-  background-color: #8699df;
+  background-color: #4a67cf;
   color: white;
 }

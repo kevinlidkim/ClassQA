@@ -1,6 +1,6 @@
-var addBtn = document.getElementById("addClassBtn");
-var createBtn = document.getElementById("createClassBtn");
-var loadBtn = document.getElementById("loadClassBtn");
+var addBtn = document.getElementById("addClassBtn") || null;
+var createBtn = document.getElementById("createClassBtn") || null;
+var loadBtn = document.getElementById("loadClassBtn") || null;
 
 addBtn.onclick = function() {
 
