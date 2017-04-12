@@ -23,9 +23,10 @@
 }
 
 .footer {
-  /*BLUE*/
-  /*background-color: #336699;
-  height:50px;*/
+  height:50px;
+  border:  1px solid #336699;
+  position:absolute;
+  bottom:0;
 }
 
 .btn-org {
@@ -35,7 +36,7 @@
   margin-left: 25px;
 }
 
-.btn-org:hover, .btn-org:active, .btn-org:active {
+.btn-org:hover, .btn-org:active, .btn-org:focus {
   background-color: #ff9940;
   color: white;
 }

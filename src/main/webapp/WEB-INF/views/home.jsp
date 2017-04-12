@@ -16,36 +16,38 @@
 
 <body>
 
-  <%-- NavBar --%>
-  <%@ include file="../components/navbar.jsp"%>
-  <%-- NavBar End --%>
+  <div class="container-fluid" id="container">
+    <%-- NavBar --%>
+    <%@ include file="../components/navbar.jsp"%>
+    <%-- NavBar End --%>
 
-  <%-- Content. --%>
+    <%-- Content. --%>
 
-  <div>
-    <h1> ${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
+    <div>
+      <h1> ${sessionUser.firstName} ${sessionUser.lastName} HOME PAGE</h1>
 
-    <c:choose>
-      <c:when test="${sessionUser.professor == true}">
-        <p>Professor</p>
-      </c:when>
-      <c:otherwise>
-        <p>Student</p>
-      </c:otherwise>
-    </c:choose>
+      <c:choose>
+        <c:when test="${sessionUser.professor == true}">
+          <p>Professor</p>
+        </c:when>
+        <c:otherwise>
+          <p>Student</p>
+        </c:otherwise>
+      </c:choose>
 
-    <h1> Enrolled Courses:</h1>
-    <c:forEach items="${sessionUser.courses}" var="course">
-      <h1 id="${course.id}">${course.courseCode}</h1>
-      <p>${course.info}<p>
-    </c:forEach>
+      <h1> Enrolled Courses:</h1>
+      <c:forEach items="${sessionUser.courses}" var="course">
+        <h1 id="${course.id}">${course.courseCode}</h1>
+        <p>${course.info}<p>
+      </c:forEach>
 
-  </div>
+    </div>
 
 
-  <div class="footer">
-    <div class="container-fluid noPadding">
+    <div class="footer row">
+      <div class="container-fluid noPadding">
 
+      </div>
     </div>
   </div>
 
