@@ -79,7 +79,7 @@ function loadCourse(courseId) {
       url: courseUrl,
       data: JSON.stringify(dataObj),
       success: function(response) {
-        console.log(response);
+        window.location.href = "/course";
       },
       error: function(err) {
          console.log(err);

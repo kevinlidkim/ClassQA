@@ -35,23 +35,25 @@ public class CourseController {
 
   @RequestMapping("/course")
   public ModelAndView loadCoursePage(
-    @RequestBody String input) {
+    @RequestBody String input) throws Exception {
 
-    System.out.println(input);
+    JSONObject request = new JSONObject(input);
+    String courseIdString = request.getString("courseId");
 
-    // Long courseId = Long.parseLong(idString);
+    Long courseId = Long.parseLong(courseIdString);
 
     ModelAndView mv = new ModelAndView("course");
-    // System.out.println("COURSE ID IS " + courseId);
 
     // load up the course
-    // Course loadThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
+    Course loadThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
 
-    // if (loadThisCourse != null) {
-    //   mv.addObject("courseInfo", loadThisCourse);
-    // } else {
-    //   // return error
-    // }
+    if (loadThisCourse != null) {
+      System.out.println("Successfully loaded course");
+      mv.addObject("courseInfo", loadThisCourse);
+    } else {
+      System.out.println("Failed to load course");
+      // return error
+    }
 
     // added questions field to course so its easier for us to load it
     // we probably don't need the questions field inside QAUser then
