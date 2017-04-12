@@ -33,9 +33,22 @@ import com.googlecode.objectify.ObjectifyService;
 @SessionAttributes("sess")
 public class CourseController {
 
-  @RequestMapping("/course/{courseId}")
-  public ModelAndView loadCoursePage(
-    @PathVariable long courseId) {
+  @RequestMapping("/course")
+  public ModelAndView loadCoursePage() {
+
+    ModelAndView mv = new ModelAndView("course");
+
+    return mv;
+  }
+
+  @RequestMapping("/loadCourse")
+  public ModelAndView loadCourseInfo(
+    @RequestBody String input) throws Exception {
+
+    JSONObject request = new JSONObject(input);
+    String courseIdString = request.getString("courseId");
+
+    Long courseId = Long.parseLong(courseIdString);
 
     ModelAndView mv = new ModelAndView("course");
 
@@ -43,8 +56,10 @@ public class CourseController {
     Course loadThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
 
     if (loadThisCourse != null) {
+      System.out.println("Successfully loaded course");
       mv.addObject("courseInfo", loadThisCourse);
     } else {
+      System.out.println("Failed to load course");
       // return error
     }
 

@@ -38,6 +38,11 @@ public class HomeController {
     return new QAUser("default", "default", "default");
   }
 
+  @RequestMapping("/")
+  public ModelAndView redirectLandingPage() {
+   return new ModelAndView("landing");
+  }
+
   @RequestMapping("/landing")
   public ModelAndView loadLandingPage(SessionStatus sessionStatus) {
     sessionStatus.setComplete();
@@ -71,6 +76,8 @@ public class HomeController {
         sessionUser.setFirstName(firstName);
         sessionUser.setLastName(lastName);
         sessionUser.setEmail(email);
+        sessionUser.setProfessor();
+
         // Add to datastore
         ObjectifyService.ofy().save().entity(sessionUser).now();
         //System.out.println("user is new, " + sessionUser.getEmail() + " added to datastore");
@@ -79,6 +86,8 @@ public class HomeController {
       // Else set session user to the checkUser found in the datastore
       else {
         sessionUser = checkUser;
+        checkUser.setProfessor();
+
         //System.out.println("User already exists in datastore");
         //System.out.println("id: " + checkUser.getId() + ", " + sessionUser.getId());
       }

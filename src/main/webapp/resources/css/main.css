@@ -1,0 +1,70 @@
+.revealHeader {
+    color: Blue;
+    font-size: 20px;
+    border: 1px dashed red.
+}
+
+.noPadding {
+  padding: 0px;
+}
+
+#nav-logo {
+  width: 175px;
+}
+
+#logoutBtn {
+  margin-right: 15px;
+}
+
+.blurple {
+  background-color: #7289DA;
+  /*rgb(114,137,218)*/
+}
+
+.navbar {
+  /*background-color: #336699;*/
+  background-color: rgba(200,200,200, .1);
+  /*background-color: #7289DA;*/
+  border-radius: 0px;
+  border: none;
+}
+
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+body {
+  /*background-image: url(../images/pattern.png);*/
+}
+
+#footerList {
+  list-style: none;
+  float: right;
+}
+
+
+.footer {
+  height: 60px;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 1px solid #e1e1e1;
+  background-color: rgba(200,200,200, .1);
+}
+
+.btn-org {
+  /*background-color: #ff7f10;*/
+  /*lighter blurple*/
+  /*background-color: #8699df;*/
+  background-color: #7289DA;
+  color: white;
+  border: none;
+  margin-left: 25px;
+}
+
+.btn-org:hover, .btn-org:active, .btn-org:focus {
+  background-color: #4a67cf;
+  color: white;
+}

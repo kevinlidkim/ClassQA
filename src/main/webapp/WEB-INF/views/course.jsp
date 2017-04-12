@@ -9,6 +9,7 @@
 <body>
   <div>
     COURSE PAGE
+    ${courseInfo}
   </div>
   <a href="#" onclick="signOut();">Sign out</a>
   <script src="../../resources/js/logout.js"></script>

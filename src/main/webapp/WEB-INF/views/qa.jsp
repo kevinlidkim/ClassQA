@@ -7,9 +7,25 @@
 </head>
 
 <body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid noPadding">
+
+      <%-- ClassQA Logo --%>
+      <img id="nav-logo" src="../../resources/images/logo.png" alt="Logo">
+
+
+        <a href="/landing"><button class="btn btn-org navbar-btn" type="button" name="button" onclick="signOut();" style="float:right" >Sign out</button></a>
+    </div>
+  </nav>
+
+
+
   <div>
     QA PAGE
   </div>
+
+
   <header>
     <a href="/home">Put Logo Here</a>
     <a href="#">Add Class</a>
