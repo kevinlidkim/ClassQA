@@ -34,7 +34,15 @@ import com.googlecode.objectify.ObjectifyService;
 public class CourseController {
 
   @RequestMapping("/course")
-  public ModelAndView loadCoursePage(
+  public ModelAndView loadCoursePage() {
+
+    ModelAndView mv = new ModelAndView("course");
+
+    return mv;
+  }
+
+  @RequestMapping("/loadCourse")
+  public ModelAndView loadCourseInfo(
     @RequestBody String input) throws Exception {
 
     JSONObject request = new JSONObject(input);

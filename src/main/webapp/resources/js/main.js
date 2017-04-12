@@ -69,7 +69,7 @@ function loadCourse(courseId) {
   var dataObj = {
       courseId: courseId
     };
-    var courseUrl = '/course'
+    var courseUrl = '/loadCourse'
     $.ajax({
       headers: {
         'Accept': 'application/json',
