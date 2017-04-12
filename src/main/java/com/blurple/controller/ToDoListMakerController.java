@@ -32,17 +32,18 @@ import com.google.gson.GsonBuilder;
 public class ToDoListMakerController {
 	String message = "Welcome to ToDoList Maker! ";
 
-	@RequestMapping("/")
-	public ModelAndView landingPage() {
-		return new ModelAndView("index");
-	}
+	// @RequestMapping("/")
+	// public ModelAndView landingPage() {
+	// 	return new ModelAndView("index");
+	// }
 
 	@RequestMapping("/tdlm")
 	public ModelAndView showMessage(
 			@RequestParam(value = "user", required = false) String user,
 			@RequestParam(value = "email", required = false) String email) {
 		if (user == null && email == null) {
-			return landingPage();
+			// return landingPage();
+			return new ModelAndView("index");
 		}
 		else {
 			ModelAndView mv = new ModelAndView("tdlm");

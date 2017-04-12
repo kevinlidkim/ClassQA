@@ -33,34 +33,25 @@ import com.googlecode.objectify.ObjectifyService;
 @SessionAttributes("sess")
 public class CourseController {
 
-  @RequestMapping("/course/{courseId}")
-  public ModelAndView loadCoursePage(
-    @PathVariable long courseId) {
-
-    ModelAndView mv = new ModelAndView("course");
-
-    // load up the course
-    Course loadThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
-
-    if (loadThisCourse != null) {
-      mv.addObject("courseInfo", loadThisCourse);
-    } else {
-      // return error
-    }
-
-    // added questions field to course so its easier for us to load it
-    // we probably don't need the questions field inside QAUser then
-
-    return mv;
-  }
-
   @RequestMapping("/course")
-  public ModelAndView load() {
+  public ModelAndView loadCoursePage(
+    @RequestBody String input) {
+
+    System.out.println(input);
+
+    // Long courseId = Long.parseLong(idString);
 
     ModelAndView mv = new ModelAndView("course");
+    // System.out.println("COURSE ID IS " + courseId);
 
     // load up the course
+    // Course loadThisCourse = ObjectifyService.ofy().load().type(Course.class).id(courseId).now();
 
+    // if (loadThisCourse != null) {
+    //   mv.addObject("courseInfo", loadThisCourse);
+    // } else {
+    //   // return error
+    // }
 
     // added questions field to course so its easier for us to load it
     // we probably don't need the questions field inside QAUser then

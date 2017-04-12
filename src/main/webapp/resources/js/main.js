@@ -1,6 +1,5 @@
 var addBtn = document.getElementById("addClassBtn") || null;
 var createBtn = document.getElementById("createClassBtn") || null;
-var loadBtn = document.getElementById("loadClassBtn") || null;
 
 addBtn.onclick = function() {
 
@@ -65,32 +64,25 @@ createBtn.onclick = function() {
 
 }
 
-loadBtn.onclick = function() {
-
-  //NEED TO PROVIDE courseId
-  var courseId = 0;
-  var courseUrl = "/course/" + courseId;
-
+function loadCourse(courseId) {
+  console.log(courseId);
   var dataObj = {
-    courseId: courseId
-  };
-
-  console.log(dataObj);
-
-  $.ajax({
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    type: "POST",
-    url: courseUrl,
-    data: JSON.stringify(dataObj),
-    success: function(response) {
-      console.log(response);
-    },
-    error: function(err) {
-       console.log(err);
-    }
-  });
-
-}
+      courseId: courseId
+    };
+    var courseUrl = '/course'
+    $.ajax({
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      type: "POST",
+      url: courseUrl,
+      data: JSON.stringify(dataObj),
+      success: function(response) {
+        console.log(response);
+      },
+      error: function(err) {
+         console.log(err);
+      }
+    });
+} 

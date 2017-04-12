@@ -36,7 +36,8 @@
 
     <h1> Enrolled Courses:</h1>
     <c:forEach items="${sessionUser.courses}" var="course">
-      <h1 id="${course.id}">${course.courseCode}</h1>
+      <h1 id="${course.id}" class="clickOnCourse">${course.courseCode}</h1>
+      <button onClick="loadCourse(${course.id})">load course</button>
       <p>${course.info}<p>
     </c:forEach>
 
